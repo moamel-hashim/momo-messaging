@@ -1,9 +1,10 @@
-import './css/App.css'
+import './css/App.css';
+import Background from './components/background';
 
 function App() {
 
   return (
-    <>Hellooo</>
+    <Background/>
   )
 }
 
