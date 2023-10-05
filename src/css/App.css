@@ -1,5 +1,28 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;1,300&display=swap');
 
 body {
   overflow: hidden;
+}
+
+label {
+  font-style: italic;
+  transition: transform 0.3s ease-out;
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform-origin: left top;
+}
+
+.upload > label {
+  pointer-events: all;
+  cursor: pointer;
+}
+
+input:focus + label,
+input:valid + label {
+  transform: translateY(-10px);
+}
+
+.button:hover {
+  background-color: #383e27;
 }
