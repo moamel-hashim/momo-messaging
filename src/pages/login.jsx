@@ -17,6 +17,7 @@ import "../css/App.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faImage } from "@fortawesome/free-solid-svg-icons";
 
+
 const colors = {
   darkOlive: "#5C7559",
   lighterOlive: "#D3E0AD",
@@ -31,7 +32,7 @@ const theme = extendTheme({
   colors,
 });
 
-export default class Registration extends React.Component {
+export default class Login extends React.Component {
   render(): React.ReactNode {
     return (
       <ChakraProvider theme={theme}>
