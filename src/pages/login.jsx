@@ -14,8 +14,6 @@ import {
 import "@chakra-ui/theme";
 import React from "react";
 import "../css/App.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faImage } from "@fortawesome/free-solid-svg-icons";
 
 const colors = {
   darkOlive: "#5C7559",
@@ -35,8 +33,26 @@ const theme = extendTheme({
 
 
 export default class Login extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      username: '',
+      password: '',
+    }
+    this.handlePasswordChange = this.handlePasswordChange.bind(this);
+    this.handleUsernameChange = this.handleUsernameChange.bind(this);
+  }
+
+  handleUsernameChange = (e) => {
+    this.setState({username: e.target.value});
+  };
+
+  handlePasswordChange = (e) => {
+    this.setState({password: e.target.value});
+  };
 
   render() {
+    const {username, password} = this.state;
     return (
       <ChakraProvider theme={theme}>
         <Center
@@ -73,7 +89,10 @@ export default class Login extends React.Component {
                   focusBorderColor={`${colors.lighterOlive}`}
                   variant={"flushed"}
                   required
+                  value={username}
+                  onChange={this.handleUsernameChange}
                 />
+                {username === '' ? <FormErrorMessage>Username is Required</FormErrorMessage> : null}
                 <FormLabel color={colors.lighterOlive}>username</FormLabel>
               </Box>
               <Box position={"relative"}>
@@ -87,6 +106,7 @@ export default class Login extends React.Component {
                   variant={"flushed"}
                   required
                 />
+                {password === '' ? <FormErrorMessage>Password is Required</FormErrorMessage> : null}
                 <FormLabel color={colors.lighterOlive}>password</FormLabel>
               </Box>
               <Box textAlign={"center"}>
