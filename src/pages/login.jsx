@@ -17,7 +17,6 @@ import "../css/App.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faImage } from "@fortawesome/free-solid-svg-icons";
 
-
 const colors = {
   darkOlive: "#5C7559",
   lighterOlive: "#D3E0AD",
@@ -32,8 +31,12 @@ const theme = extendTheme({
   colors,
 });
 
+
+
+
 export default class Login extends React.Component {
-  render(): React.ReactNode {
+
+  render() {
     return (
       <ChakraProvider theme={theme}>
         <Center
@@ -57,16 +60,16 @@ export default class Login extends React.Component {
               </Heading>
             </Box>
             <Box textAlign={"center"}>
-              <Text>Register</Text>
+              <Text>Login</Text>
             </Box>
             <FormControl variant="floating">
-              <Box position={"relative"}>
+              <Box position={"relative"} margin={'1.5rem 0'}>
                 <Input
                   type="text"
                   border={"none"}
                   borderBottom={`1px solid ${colors.lighterOlive}`}
                   borderRadius={"0"}
-                  marginBottom={"1rem"}
+                  marginBottom={"1.5rem"}
                   focusBorderColor={`${colors.lighterOlive}`}
                   variant={"flushed"}
                   required
@@ -75,43 +78,16 @@ export default class Login extends React.Component {
               </Box>
               <Box position={"relative"}>
                 <Input
-                  type="email"
-                  border={"none"}
-                  borderBottom={`1px solid ${colors.lighterOlive}`}
-                  borderRadius={"0"}
-                  marginBottom={"1rem"}
-                  focusBorderColor={`${colors.lighterOlive}`}
-                  variant={"flushed"}
-                  required
-                />
-                <FormLabel color={colors.lighterOlive}>email</FormLabel>
-              </Box>
-              <Box position={"relative"}>
-                <Input
                   type="password"
                   border={"none"}
                   borderBottom={`1px solid ${colors.lighterOlive}`}
                   borderRadius={"0"}
-                  marginBottom={"1rem"}
+                  marginBottom={"1.5rem"}
                   focusBorderColor={`${colors.lighterOlive}`}
                   variant={"flushed"}
                   required
                 />
                 <FormLabel color={colors.lighterOlive}>password</FormLabel>
-              </Box>
-              <Box position={"relative"} margin={'1rem 0'} className="upload">
-                <Input type="file" style={{ display: "none" }} id="file" />
-                <FormLabel
-                  htmlFor="file"
-                  fontSize={"2rem"}
-                  color={colors.lighterOlive}
-                  display={'flex'}
-                  alignItems={'center'}
-                  gap={'10px'}
-                >
-                  <FontAwesomeIcon icon={faImage} />
-                  <Text as={"span"} fontSize={'1rem'}>Add an avatar</Text>
-                </FormLabel>
               </Box>
               <Box textAlign={"center"}>
                 <Button
@@ -125,7 +101,7 @@ export default class Login extends React.Component {
                   letterSpacing={"1px"}
                   textTransform={"capitalize"}
                 >
-                  Register
+                  Login
                 </Button>
               </Box>
             </FormControl>
@@ -133,7 +109,7 @@ export default class Login extends React.Component {
               <Text>
                 You do have an account?{" "}
                 <Text as={"span"} color={colors.darkOlive} cursor={"pointer"}>
-                  Login
+                  Register
                 </Text>
               </Text>
             </Box>
