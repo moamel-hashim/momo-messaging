@@ -12,10 +12,8 @@ import {
   Button,
 } from "@chakra-ui/react";
 import "@chakra-ui/theme";
-import React, {ChangeEvent} from "react";
+import React from "react";
 import "../css/App.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faImage } from "@fortawesome/free-solid-svg-icons";
 
 const colors = {
   darkOlive: "#5C7559",
@@ -31,40 +29,30 @@ const theme = extendTheme({
   colors,
 });
 
-interface RegistrationState {
-  username: string;
-  email: string;
-  password: string;
-}
 
 
-export default class Registration extends React.Component<object,RegistrationState> {
-  constructor(props: RegistrationState) {
+
+export default class Login extends React.Component {
+  constructor(props) {
     super(props);
-      this.state = {
-        username: '',
-        email: '',
-        password: '',
-    };
-    this.handleEmailChange = this.handleEmailChange.bind(this);
+    this.state = {
+      username: '',
+      password: '',
+    }
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
     this.handleUsernameChange = this.handleUsernameChange.bind(this);
   }
 
-  handleUsernameChange = (e: ChangeEvent<HTMLInputElement>) => {
+  handleUsernameChange = (e) => {
     this.setState({username: e.target.value});
   };
 
-  handlePasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
+  handlePasswordChange = (e) => {
     this.setState({password: e.target.value});
   };
 
-  handleEmailChange = (e: ChangeEvent<HTMLInputElement>) => {
-    this.setState({email: e.target.value});
-  };
-
-  render(): React.ReactNode {
-    const {username, email, password} = this.state;
+  render() {
+    const {username, password} = this.state;
     return (
       <ChakraProvider theme={theme}>
         <Center
@@ -88,10 +76,10 @@ export default class Registration extends React.Component<object,RegistrationSta
               </Heading>
             </Box>
             <Box textAlign={"center"}>
-              <Text>Register</Text>
+              <Text>Login</Text>
             </Box>
             <FormControl variant="floating">
-              <Box position={"relative"}>
+              <Box position={"relative"} margin={'1.5rem 0'}>
                 <Input
                   type="text"
                   border={"none"}
@@ -109,22 +97,6 @@ export default class Registration extends React.Component<object,RegistrationSta
               </Box>
               <Box position={"relative"}>
                 <Input
-                  type="email"
-                  border={"none"}
-                  borderBottom={`1px solid ${colors.lighterOlive}`}
-                  borderRadius={"0"}
-                  marginBottom={"1.5rem"}
-                  focusBorderColor={`${colors.lighterOlive}`}
-                  variant={"flushed"}
-                  required
-                  value={email}
-                  onChange={this.handleEmailChange}
-                />
-                {email === '' ? <FormErrorMessage>Email is Required</FormErrorMessage> : null}
-                <FormLabel color={colors.lighterOlive}>email</FormLabel>
-              </Box>
-              <Box position={"relative"}>
-                <Input
                   type="password"
                   border={"none"}
                   borderBottom={`1px solid ${colors.lighterOlive}`}
@@ -133,25 +105,9 @@ export default class Registration extends React.Component<object,RegistrationSta
                   focusBorderColor={`${colors.lighterOlive}`}
                   variant={"flushed"}
                   required
-                  value={password}
-                  onChange={this.handlePasswordChange}
                 />
-                {password === '' ? <FormErrorMessage>Password is Required</FormErrorMessage>: null}
+                {password === '' ? <FormErrorMessage>Password is Required</FormErrorMessage> : null}
                 <FormLabel color={colors.lighterOlive}>password</FormLabel>
-              </Box>
-              <Box position={"relative"} margin={'1rem 0'} className="upload">
-                <Input type="file" style={{ display: "none" }} id="file" />
-                <FormLabel
-                  htmlFor="file"
-                  fontSize={"2rem"}
-                  color={colors.lighterOlive}
-                  display={'flex'}
-                  alignItems={'center'}
-                  gap={'10px'}
-                >
-                  <FontAwesomeIcon icon={faImage} />
-                  <Text as={"span"} fontSize={'1rem'}>Add an avatar</Text>
-                </FormLabel>
               </Box>
               <Box textAlign={"center"}>
                 <Button
@@ -165,7 +121,7 @@ export default class Registration extends React.Component<object,RegistrationSta
                   letterSpacing={"1px"}
                   textTransform={"capitalize"}
                 >
-                  Register
+                  Login
                 </Button>
               </Box>
             </FormControl>
@@ -173,7 +129,7 @@ export default class Registration extends React.Component<object,RegistrationSta
               <Text>
                 You do have an account?{" "}
                 <Text as={"span"} color={colors.darkOlive} cursor={"pointer"}>
-                  Login
+                  Register
                 </Text>
               </Text>
             </Box>
