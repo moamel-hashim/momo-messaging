@@ -19,8 +19,8 @@ label {
 }
 
 input:focus + label,
-input:valid + label {
-  transform: translateY(-10px);
+input:valid + label{
+  transform: translateY(-15px);
 }
 
 .button:hover {

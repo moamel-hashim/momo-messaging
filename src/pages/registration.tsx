@@ -12,7 +12,7 @@ import {
   Button,
 } from "@chakra-ui/react";
 import "@chakra-ui/theme";
-import React from "react";
+import React, {ChangeEvent} from "react";
 import "../css/App.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faImage } from "@fortawesome/free-solid-svg-icons";
@@ -31,8 +31,40 @@ const theme = extendTheme({
   colors,
 });
 
-export default class Registration extends React.Component {
+interface RegistrationState {
+  username: string;
+  email: string;
+  password: string;
+}
+
+
+export default class Registration extends React.Component<object,RegistrationState> {
+  constructor(props: RegistrationState) {
+    super(props);
+      this.state = {
+        username: '',
+        email: '',
+        password: '',
+    };
+    this.handleEmailChange = this.handleEmailChange.bind(this);
+    this.handlePasswordChange = this.handlePasswordChange.bind(this);
+    this.handleUsernameChange = this.handleUsernameChange.bind(this);
+  }
+
+  handleUsernameChange = (e: ChangeEvent<HTMLInputElement>) => {
+    this.setState({username: e.target.value});
+  };
+
+  handlePasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
+    this.setState({password: e.target.value});
+  };
+
+  handleEmailChange = (e: ChangeEvent<HTMLInputElement>) => {
+    this.setState({email: e.target.value});
+  };
+
   render(): React.ReactNode {
+    const {username, email, password} = this.state;
     return (
       <ChakraProvider theme={theme}>
         <Center
@@ -65,11 +97,14 @@ export default class Registration extends React.Component {
                   border={"none"}
                   borderBottom={`1px solid ${colors.lighterOlive}`}
                   borderRadius={"0"}
-                  marginBottom={"1rem"}
+                  marginBottom={"1.5rem"}
                   focusBorderColor={`${colors.lighterOlive}`}
                   variant={"flushed"}
                   required
+                  value={username}
+                  onChange={this.handleUsernameChange}
                 />
+                {username === '' ? <FormErrorMessage>Username is Required</FormErrorMessage> : null}
                 <FormLabel color={colors.lighterOlive}>username</FormLabel>
               </Box>
               <Box position={"relative"}>
@@ -78,11 +113,14 @@ export default class Registration extends React.Component {
                   border={"none"}
                   borderBottom={`1px solid ${colors.lighterOlive}`}
                   borderRadius={"0"}
-                  marginBottom={"1rem"}
+                  marginBottom={"1.5rem"}
                   focusBorderColor={`${colors.lighterOlive}`}
                   variant={"flushed"}
                   required
+                  value={email}
+                  onChange={this.handleEmailChange}
                 />
+                {email === '' ? <FormErrorMessage>Email is Required</FormErrorMessage> : null}
                 <FormLabel color={colors.lighterOlive}>email</FormLabel>
               </Box>
               <Box position={"relative"}>
@@ -91,11 +129,14 @@ export default class Registration extends React.Component {
                   border={"none"}
                   borderBottom={`1px solid ${colors.lighterOlive}`}
                   borderRadius={"0"}
-                  marginBottom={"1rem"}
+                  marginBottom={"1.5rem"}
                   focusBorderColor={`${colors.lighterOlive}`}
                   variant={"flushed"}
                   required
+                  value={password}
+                  onChange={this.handlePasswordChange}
                 />
+                {password === '' ? <FormErrorMessage>Password is Required</FormErrorMessage>: null}
                 <FormLabel color={colors.lighterOlive}>password</FormLabel>
               </Box>
               <Box position={"relative"} margin={'1rem 0'} className="upload">
